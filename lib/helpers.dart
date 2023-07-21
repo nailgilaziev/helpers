@@ -23,7 +23,7 @@ extension Tracer on StackTrace {
           }).join('\n');
 }
 
-String eInfo(Object e, StackTrace stackTrace) {
+String eInfo(Object e, [StackTrace? stackTrace]) {
   return e.toString() + (stackTrace?.shortExplanation ?? '');
 }
 
@@ -63,16 +63,6 @@ extension SpaceInjector on Iterable<Widget> {
 
   List<Widget> injectSpace(double v) {
     return injectBetween(SizedBox(width: v, height: v));
-  }
-}
-
-extension IterableToMap<E> on Iterable<E>{
-  Map<K, V> toMapBy<K, V>({K mapKeys(E element), V mapValues(E element)}) {
-    final m = <K, V>{};
-    forEach((element) {
-      m[mapKeys(element)] = mapValues == null ? element as V : mapValues(element);
-    });
-    return m;
   }
 }
 
